@@ -2,11 +2,12 @@ package org.example;
 
 
 import java.util.stream.Collectors;
-public class CodeCracker {
-  final String fromKey;
-  final String toKey;
 
-  CodeCracker(final String fromKey, final String toKey) {
+public class CodeCracker {
+  private final String fromKey;
+  private final String toKey;
+
+  public CodeCracker(final String fromKey, final String toKey) {
     this.fromKey = fromKey;
     this.toKey = toKey;
   }
@@ -19,7 +20,7 @@ public class CodeCracker {
     return convert(message, toKey, fromKey);
   }
 
-  String convert(final String message, final String fromKey, final String toKey) {
+  private String convert(final String message, final String fromKey, final String toKey) {
     return message.chars()
       .mapToObj(i -> (char) i)
       .map(fromKey::indexOf)
