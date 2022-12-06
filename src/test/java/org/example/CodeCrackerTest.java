@@ -4,14 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CodeCrackerTest {
-  @Test
-  void returnMessage() {
-    final String message = "Hello World";
-    final CodeCracker codeCracker = new CodeCracker();
-
-    assertEquals(message, codeCracker.returnMessage("Hello World"));
-  }
+class CodeCrackerTest {
   @Test
   void getPositionInAlphabet(){
     final char letter = 'a';
@@ -25,7 +18,41 @@ public class CodeCrackerTest {
     final int position = 1;
     final CodeCracker codeCracker = new CodeCracker();
 
-    assertEquals('b', codeCracker.getLetterInDecryptionKey(position));
+    assertEquals(')', codeCracker.getLetterInDecryptionKey(position));
+
+  }
+
+  @Test
+  void encryptMessage(){
+    final String message= "hello world";
+    final CodeCracker codeCracker = new CodeCracker();
+
+    assertEquals("&£aad ldga(", codeCracker.encryptMessage(message));
+
+  }
+  @Test
+  void encryptMessageNotHelloWorld(){
+    final String message= "not hello world";
+    final CodeCracker codeCracker = new CodeCracker();
+
+    assertEquals("cdi &£aad ldga(", codeCracker.encryptMessage(message));
+
+  }
+  @Test
+  void decryptMessage(){
+    final String message= "&£aad ldga(";
+    final CodeCracker codeCracker = new CodeCracker();
+
+    assertEquals("hello world", codeCracker.decryptMessage(message));
+
+  }
+
+  @Test
+  void decryptMessageNotHelloWorld(){
+    final String message= "cdi &£aad ldga(";
+    final CodeCracker codeCracker = new CodeCracker();
+
+    assertEquals("not hello world", codeCracker.decryptMessage(message));
 
   }
 }
