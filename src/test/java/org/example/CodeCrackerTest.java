@@ -15,34 +15,34 @@ class CodeCrackerTest {
   @Test
   void encryptMessage(){
     final String message= "hello world";
-    final CodeCracker codeCracker = new CodeCracker();
+    final CodeCracker codeCracker = new CodeCracker(ALPHABET, DECRYPTION_KEY);
 
-    assertEquals("&£aad ldga(", codeCracker.convert(message, ALPHABET, DECRYPTION_KEY));
+    assertEquals("&£aad ldga(", codeCracker.encrypt(message));
 
   }
   @Test
   void encryptMessageNotHelloWorld(){
     final String message= "not hello world";
-    final CodeCracker codeCracker = new CodeCracker();
+    final CodeCracker codeCracker = new CodeCracker(ALPHABET, DECRYPTION_KEY);
 
-    assertEquals("cdi &£aad ldga(", codeCracker.convert(message, ALPHABET, DECRYPTION_KEY));
+    assertEquals("cdi &£aad ldga(", codeCracker.encrypt(message));
 
   }
   @Test
   void decryptMessage(){
     final String message= "&£aad ldga(";
-    final CodeCracker codeCracker = new CodeCracker();
+    final CodeCracker codeCracker = new CodeCracker(ALPHABET, DECRYPTION_KEY);
 
-    assertEquals("hello world", codeCracker.convert(message, DECRYPTION_KEY, ALPHABET));
+    assertEquals("hello world", codeCracker.decrypt(message));
 
   }
 
   @Test
   void decryptMessageNotHelloWorld(){
     final String message= "cdi &£aad ldga(";
-    final CodeCracker codeCracker = new CodeCracker();
+    final CodeCracker codeCracker = new CodeCracker(ALPHABET, DECRYPTION_KEY);
 
-    assertEquals("not hello world", codeCracker.convert(message, DECRYPTION_KEY, ALPHABET));
+    assertEquals("not hello world", codeCracker.decrypt(message));
 
   }
 }
